@@ -12,7 +12,7 @@ const loadMore = document.querySelector(".load-more")
 
 let inputPhoto 
 let page = 1
-let per_page = 3
+let per_page = 40
 let totalPages
 let totalPhotos
 
@@ -30,7 +30,7 @@ function renderPhotos(event) {
         totalPages = totalPhotos/per_page
         console.log(totalPages)
         console.log(page)
-        if (page < totalPages) {
+        if (page <= totalPages) {
           loadMore.classList.remove("is-hidden")
         }
         if (totalPhotos === 0) {
@@ -38,9 +38,6 @@ function renderPhotos(event) {
         } else {
             Notiflix.Notify.success(`Hooray! We found ${totalPhotos} images.`);
         }
-        
-
-
 })
     .catch(error => console.error(error));
 
