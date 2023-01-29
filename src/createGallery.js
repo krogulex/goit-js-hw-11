@@ -19,6 +19,6 @@ function createGallery(photosArray) {
 
       let lightbox = new SimpleLightbox('.gallery a', {
         /* options */
-      });
+      }).refresh();
 }
 export {createGallery}

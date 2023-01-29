@@ -2,6 +2,7 @@ import { fetchPhotos } from './fetchPhotos';
 import { createGallery } from './createGallery';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import Notiflix from 'notiflix';
 
 const input = document.querySelector('input');
 const button = document.querySelector('button');
@@ -31,7 +32,16 @@ function renderPhotos(event) {
         console.log(page)
         if (page < totalPages) {
           loadMore.classList.remove("is-hidden")
-    }})
+        }
+        if (totalPhotos === 0) {
+            Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.");
+        } else {
+            Notiflix.Notify.success(`Hooray! We found ${totalPhotos} images.`);
+        }
+        
+
+
+})
     .catch(error => console.error(error));
 
   event.currentTarget.reset();
