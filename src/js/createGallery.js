@@ -3,7 +3,6 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 function createGallery(photosArray) {
   const gallery = document.querySelector('.gallery');
-  console.log(photosArray);
 
   for (let i = 0; i < photosArray.length; i++) {
     const el = photosArray[i];

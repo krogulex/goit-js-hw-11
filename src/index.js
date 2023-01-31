@@ -1,14 +1,15 @@
-import { fetchPhotos } from './fetchPhotos';
-import { createGallery } from './createGallery';
+import { fetchPhotos } from './js/fetchPhotos';
+import { createGallery } from './js/createGallery';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import Notiflix from 'notiflix';
 
-const input = document.querySelector('input');
+const input = document.querySelector('input[name="searchQuery"]');
 const form = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
 //const loadMore = document.querySelector('.load-more');
 
+console.log(input)
 let inputPhoto;
 let page = 1;
 let per_page = 40;
@@ -20,18 +21,17 @@ function renderPhotos(event) {
   event.preventDefault();
   gallery.innerHTML = '';
   inputPhoto = input.value;
-  console.log(inputPhoto);
 
   fetchPhotos(inputPhoto, page, per_page)
     .then(photosArray => {
       totalPhotos = photosArray.total;
       createGallery(photosArray.hits);
       totalPages = totalPhotos / per_page;
-      console.log(totalPages);
-      console.log(page);
-/*       if (page <= totalPages) {
+
+      /*       if (page <= totalPages) {
         loadMore.classList.remove('is-hidden');
       } */
+
       if (totalPhotos === 0) {
         Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
@@ -47,7 +47,6 @@ function renderPhotos(event) {
 
 function loadMorePhotos() {
   totalPages = totalPhotos / per_page;
-  console.log(totalPages);
 
   page += 1;
   fetchPhotos(inputPhoto, page, per_page)

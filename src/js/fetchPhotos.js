@@ -7,7 +7,6 @@ async function fetchPhotos(inputPhoto, page, per_page) {
       )}&image_type=photo&orientation=horizontal&page=${page}&per_page=${per_page}`
   );
 
-  console.log(photos);
   return photos;
 }
 
